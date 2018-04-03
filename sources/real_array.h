@@ -1,7 +1,6 @@
 #ifndef REALARRAY_H
 #define REALARRAY_H
 
-#include <iostream>
 #include <ostream>
 
 namespace jfet
