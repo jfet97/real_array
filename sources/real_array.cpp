@@ -32,5 +32,4 @@ namespace jfet
 			{
 				delete [] ptr;
 			}
-	};
 }
