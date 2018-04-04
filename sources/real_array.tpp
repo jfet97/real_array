@@ -1,7 +1,7 @@
 #include "real_array.h"
 #include <iostream>
 
-            // void constructor
+                        // void constructor
 			template<typename T>
 			real_array<T>::real_array() : real_array<T>(0) {}
 			
@@ -48,7 +48,7 @@
 			
 			// destructor
 			template<typename T>
-		    real_array<T>::~real_array()
+		        real_array<T>::~real_array()
 			{
 				delete [] ptr;
 			}
