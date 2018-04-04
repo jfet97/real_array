@@ -5,7 +5,7 @@
 
 
 	// approach #2 for Template Classes and Friend Function -> https://web.mst.edu/~nmjxv3/articles/templates.html
-    template <typename T> class real_array;
+        template <typename T> class real_array;
 	// Here, operator<< is declared as a template function using a declared (but not yet defined) templated class real_array
 	template <typename T> std::ostream& operator<<( std::ostream&, const real_array<T> &);
 	
