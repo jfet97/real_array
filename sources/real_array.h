@@ -31,6 +31,11 @@ namespace jfet
 			// copy assignment operator
 			real_array& operator= (const real_array&);
 			
+			// move constructor
+			real_array(const real_array&&);
+			
+			// move assignment operator
+			real_array& operator= (const real_array&&);
 			
 			// return the numbers of element inserted in the array
 			size_t size() const {
