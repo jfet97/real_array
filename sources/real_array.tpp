@@ -49,18 +49,14 @@ namespace jfet
 	// move assignment operator
 	template<typename T>
 	real_array<T>& real_array<T>::operator= (real_array<T> &&other) {
-		
 		if(this != &other) {
 			_size = other._size;
-			
 			// object already esixts, so I don't need to allocate new memory, but I must free previous resources
 			delete [] ptr;
 			ptr = other.ptr;
-			
 			other.ptr = nullptr;
 			other._size = 0;
 		}
-		
 		return *this;
 	}
 	
