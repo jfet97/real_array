@@ -1,6 +1,5 @@
 #include "real_array.h"
 #include <iostream>
-<<<<<<< HEAD
 namespace jfet
 {
 	// void constructor
@@ -18,24 +17,6 @@ namespace jfet
 			_size = 0;
 		}
 	}
-=======
-
-                        // void constructor
-			template<typename T>
-			real_array<T>::real_array() : real_array<T>(0) {}
-			
-			// delegated constructor
-			template<typename T>
-			real_array<T>::real_array(size_t n) {
-				if(n) {
-					ptr = new T[n];
-					_size = n;
-				} else {
-					ptr = nullptr;
-					_size = 0;
-				}
-			}
->>>>>>> b9a18dc38cce9c0d8579637fa5fbd72fe9dc3bc7
 			
 	// overload for [] operator
 	template<typename T>
@@ -66,21 +47,11 @@ namespace jfet
 		return _os;
 	}
 			
-<<<<<<< HEAD
-		// destructor
-		template<typename T>
-		real_array<T>::~real_array() {
-			delete [] ptr;
-		}
+	// destructor
+	template<typename T>
+	real_array<T>::~real_array() {
+		delete [] ptr;
+	}
 }
-=======
-			// destructor
-			template<typename T>
-		        real_array<T>::~real_array()
-			{
-				delete [] ptr;
-			}
-
->>>>>>> b9a18dc38cce9c0d8579637fa5fbd72fe9dc3bc7
 
 

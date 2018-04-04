@@ -11,7 +11,6 @@ namespace jfet
 	// Here, operator<< is declared as a template function using a declared (but not yet defined) templated class real_array
 	template <typename T> std::ostream& operator<<( std::ostream&, const real_array<T> &);
 	
-	
 	template<class T>
 	class real_array
 	{
