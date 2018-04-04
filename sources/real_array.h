@@ -25,13 +25,20 @@ namespace jfet
 			// delegated constructor
 			real_array(size_t n);
 
-			// no copy - temporary
-			real_array(const real_array&) = delete;
-			real_array& operator = (const real_array&) = delete;
+			// copy constructor
+			real_array(const real_array&);
+			
+			// copy assignment operator
+			real_array& operator= (const real_array&);
 			
 			
 			// return the numbers of element inserted in the array
 			size_t size() const {
+				return _size;
+			}
+			
+			// return the numbers of element inserted in the array
+			size_t length() const {
 				return _size;
 			}
 

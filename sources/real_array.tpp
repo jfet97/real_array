@@ -17,6 +17,24 @@ namespace jfet
 			_size = 0;
 		}
 	}
+	
+	// copy constructor
+	template<typename T>
+	// using T[other._size] I'm sure avoiding garbage values if I change variables' declaration order
+	real_array<T>::real_array(const real_array<T> &other) : _size{other._size}, ptr{new T[other._size]} {
+		for(int index = 0; index < _size; index++) ptr[index] = other.ptr[index];
+	}
+
+			
+	// copy assignment operator
+	template<typename T>
+	real_array<T>& real_array<T>::operator= (const real_array<T> &other) {
+		_size = other._size;
+		// object already esixts, so I don't need to allocate new memory
+		for(int index = 0; index < _size; index++) ptr[index] = other.ptr[index];
+		return *this;
+	}
+	
 			
 	// overload for [] operator
 	template<typename T>
@@ -42,8 +60,8 @@ namespace jfet
 
 	// overload for << operator
 	template<typename T>
-	std::ostream& operator<<(std::ostream& _os, const real_array<T> &_a) {
-		for(size_t index = 1; index <=_a._size; index++) std::cout << _a[index] << std::endl;
+	std::ostream& operator<<(std::ostream& _os, const real_array<T> &other) {
+		for(size_t index = 1; index <=other._size; index++) std::cout << other[index] << std::endl;
 		return _os;
 	}
 			
