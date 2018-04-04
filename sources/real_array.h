@@ -3,7 +3,6 @@
 
 #include <ostream>
 
-
 namespace jfet
 {
 	
