@@ -1,5 +1,6 @@
 #include "real_array.h"
 #include <iostream>
+
 namespace jfet
 {
 	// void constructor
@@ -38,7 +39,7 @@ namespace jfet
 	// move constructor
 	template<typename T>
 	// I set ptr = nullptr because move assignment operator call delete to free previous resources that this object does not have
-	real_array<T>::real_array(const real_array<T> &&other) : _size{0}, ptr{nullptr} {
+	real_array<T>::real_array(real_array<T> &&other) : _size{0}, ptr{nullptr} {
 		// I call move assignment operator
 		*this = std::move(other); 
 	}
@@ -46,7 +47,7 @@ namespace jfet
 			
 	// move assignment operator
 	template<typename T>
-	real_array<T>& real_array<T>::operator= (const real_array<T> &&other) {
+	real_array<T>& real_array<T>::operator= (real_array<T> &&other) {
 		
 		if(this != &other) {
 			_size = other._size;
@@ -71,7 +72,7 @@ namespace jfet
 		// else you got the "real" object requested
 		if(_n<=_size) return ptr[_n-1];
 		// throw exception if n>size_t
-		if(_n>_size) return ptr[0];
+		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
 	}
 			
 	// overload for [] operator for const objects
@@ -82,7 +83,8 @@ namespace jfet
 		// else you got the "real" object requested
 		if(_n<=_size) return ptr[_n-1];
 		// throw exception if n>size_t
-		if(_n>_size) return ptr[0];
+		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
+		
 	}
 
 	// overload for << operator
