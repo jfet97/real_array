@@ -3,9 +3,13 @@
 
 #include <ostream>
 
-namespace jfet
-{
 
+	// approach #2 for Template Classes and Friend Function -> https://web.mst.edu/~nmjxv3/articles/templates.html
+    template <typename T> class real_array;
+	// Here, operator<< is declared as a template function using a declared (but not yet defined) templated class real_array
+	template <typename T> std::ostream& operator<<( std::ostream&, const real_array<T> &);
+	
+	
 	template<class T>
 	class real_array
 	{
@@ -14,7 +18,6 @@ namespace jfet
 			T *ptr;
 
 		public:
-			
 			// void constructor
 			real_array();
 
@@ -27,20 +30,27 @@ namespace jfet
 			
 			
 			// return the numbers of element inserted in the array
-			size_t size() {
+			size_t size() const {
 				return _size;
 			}
 
 			// overload for [] operator
 			T& operator[](size_t n);
+			
+			// overload for [] operator for const object
+			const T& operator[](size_t n) const;
 
 			// overload for << operator
-			friend std::ostream& operator<<(std::ostream& os, const real_array &a);
+			friend std::ostream& operator<<<T>(std::ostream& _os, const real_array &a);
 			
 			// destructor
 			~real_array();
 	};
-}
 
+
+
+#include "real_array.tpp"
 #endif
+
+
 
