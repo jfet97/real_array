@@ -38,7 +38,7 @@ namespace jfet
 	// move constructor
 	template<typename T>
 	// I set ptr = nullptr because move assignment operator call delete to free previous resources that this object does not have
-	real_array<T>::real_array(const real_array<T> &&other) : _size{0}, ptr{nullptr} {
+	real_array<T>::real_array(real_array<T> &&other) : _size{0}, ptr{nullptr} {
 		// I call move assignment operator
 		*this = std::move(other); 
 	}
@@ -46,7 +46,7 @@ namespace jfet
 			
 	// move assignment operator
 	template<typename T>
-	real_array<T>& real_array<T>::operator= (const real_array<T> &&other) {
+	real_array<T>& real_array<T>::operator= (real_array<T> &&other) {
 		
 		if(this != &other) {
 			_size = other._size;
