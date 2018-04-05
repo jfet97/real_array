@@ -1,6 +1,6 @@
 #include "real_array.h"
 #include <iostream>
-
+#include <vector>
 int main(int argc, char **argv)
 {
 	jfet::real_array<int> a{5};
@@ -31,7 +31,10 @@ int main(int argc, char **argv)
 	jfet::real_array<int>c = std::move(a);
 	jfet::real_array<int>d{5};
 	d = b;
+	
+	for(jfet::real_array<int>::iterator iter = d.begin(); iter != d.end(); iter++) std::cout << "d: "<< *iter << std::endl;
 
+	
 
 
 	return 0;
