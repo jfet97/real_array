@@ -67,7 +67,8 @@ namespace jfet
 			// destructor
 			~real_array();
 			
-			// iterator
+			
+			// iterators
 			class iterator : public std::iterator <std::random_access_iterator_tag, T> {
 				
 				// derived class can access to it, like const_iterator
@@ -84,9 +85,7 @@ namespace jfet
 					// operators overload
 					
 					T& operator*() const {return *pointer;} // It's const because we do not modify 'pointer' value. We can modify the value pointed
-					// const T& operator*() const {return *pointer;} // It's const because we do not modify 'pointer' value. We cannot modify the value pointed, so we return const T&
 					T& operator[](difference_type _d) const {return pointer[_d];} // It's const because we do not modify 'pointer' value
-					// const T& operator[](difference_type _d) const {return pointer[_d];} // return a const object for const_iterator
 					
 					iterator& operator+=(difference_type _d) {pointer += _d; return *this;}
 					iterator& operator-=(difference_type _d) {pointer -= _d; return *this;}
@@ -109,12 +108,57 @@ namespace jfet
 					bool operator<=(const iterator& other) const {return pointer <= other.pointer;}
 			};
 			
+			class const_iterator : public iterator {
+				
+				public:
+				
+					const_iterator() : iterator{nullptr} {}
+					const_iterator(T * _p) : iterator{_p} {}
+					// rule of zero
+					
+					// operators overload
+					
+					const T& operator*() const {return *iterator::pointer;} // It's const because we do not modify 'pointer' value. We cannot modify the value pointed, so we return const T&
+					const T& operator[](difference_type _d) const {return iterator::pointer[_d];} // return a const object 
+					
+					const const_iterator& operator+=(difference_type _d) {iterator::pointer += _d; return *this;}
+					const const_iterator& operator-=(difference_type _d) {iterator::pointer -= _d; return *this;}
+					const const_iterator& operator++() {++iterator::pointer; return *this;} //prefix ++
+					const const_iterator& operator--() {--iterator::pointer; return *this;} // prefix --
+					const const_iterator operator++(int) {const_iterator temporary{*this}; ++iterator::pointer; return temporary;} // postfix ++
+					const const_iterator operator--(int) {const_iterator temporary{*this}; --iterator::pointer; return temporary;} // postfix--
+					
+					difference_type operator-(const const_iterator& other) const {return iterator::pointer - other.iterator::pointer;} // difference between iterators
+					const_iterator operator-(difference_type _d) const {return const_iterator{iterator::pointer-_d};} 
+					const_iterator operator+(difference_type _d) const {return const_iterator{iterator::pointer+_d};}
+					friend inline const_iterator operator+(difference_type _d, const const_iterator& other) {return const_iterator(_d+other.iterator::pointer);}
+					friend inline const_iterator operator-(difference_type _d, const const_iterator& other) {return const_iterator(_d-other.iterator::pointer);} // weird but...
+
+					bool operator==(const const_iterator& other) const {return iterator::pointer == other.iterator::pointer;}
+					bool operator!=(const const_iterator& other) const {return iterator::pointer != other.iterator::pointer;}
+					bool operator>(const const_iterator& other) const {return iterator::pointer > other.iterator::pointer;}
+					bool operator<(const const_iterator& other) const {return iterator::pointer < other.iterator::pointer;}
+					bool operator>=(const const_iterator& other) const {return iterator::pointer >= other.iterator::pointer;}
+					bool operator<=(const const_iterator& other) const {return iterator::pointer <= other.iterator::pointer;}
+			};
+			
+			
+			
+			
 			iterator begin() { // not const because i must call cbegin() for const object
 				return iterator(ptr);
 			}
 			
 			iterator end() { // not const because i must call cend() for const object
 				return iterator(ptr + _size);
+			}
+			
+			const_iterator cbegin() const { 
+				return const_iterator(ptr);
+			}
+			
+			const_iterator cend() const {
+				return const_iterator(ptr + _size);
 			}
 	};
 }

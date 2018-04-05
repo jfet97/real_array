@@ -32,9 +32,18 @@ int main(int argc, char **argv)
 	jfet::real_array<int>d{5};
 	d = b;
 	
+	for(jfet::real_array<int>::iterator iter = d.begin(); iter != d.end(); iter++) *iter *= 2;
 	for(jfet::real_array<int>::iterator iter = d.begin(); iter != d.end(); iter++) std::cout << "d: "<< *iter << std::endl;
-
 	
+	// for(jfet::real_array<int>::const_iterator iter = d.cbegin(); iter != d.cend(); iter++) *iter *= 2; 
+	// ERROR *iter *= 2 because iter is const_iterator
+	
+	for(jfet::real_array<int>::const_iterator iter = d.cbegin(); iter != d.cend(); iter++) std::cout << "d: "<< *iter << std::endl;
+	
+	const jfet::real_array<int> e{b};
+	// for(jfet::real_array<int>::iterator iter = e.begin(); iter != e.end(); iter++) std::cout << "e: "<< *iter << std::endl;
+	// ERROR you can't use normal iterator on const object, also for read-only operation. You have to use const_iterator
+	for(jfet::real_array<int>::const_iterator iter = e.cbegin(); iter != e.cend(); iter++) std::cout << "e: "<< *iter << std::endl;
 
 
 	return 0;
