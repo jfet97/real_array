@@ -51,12 +51,12 @@ namespace jfet
 			// move assignment operator
 			real_array& operator= (real_array&&);
 			
-			// return the numbers of element inserted in the array
+			// return how many element are inserted in the array
 			size_t size() const {
 				return _size;
 			}
 			
-			// return the numbers of element inserted in the array
+			// return how many element are inserted in the array
 			size_t lenght() const {
 				return _size;
 			}
