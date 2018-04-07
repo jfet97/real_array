@@ -1,5 +1,4 @@
 #include "real_array.h"
-#include <iostream>
 
 
 namespace jfet

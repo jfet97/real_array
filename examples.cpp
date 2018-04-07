@@ -1,6 +1,5 @@
 #include "real_array.h"
 #include <iostream>
-#include <vector>
 
 int main(int argc, char **argv)
 {
@@ -78,7 +77,7 @@ int main(int argc, char **argv)
 		std::cout << exception.what() << std::endl;
 	}
 	
-	jfet::real_array<float> realFloatArray {1.5,6.8,33.2,9.53};
+	jfet::real_array<float> realFloatArray {1.5, 6.8, 33.2, 9.53};
 	std::cout << "realFloatArray has size: " << realFloatArray.size() << std::endl;
 	for(auto x : realFloatArray) std:: cout << x << std::endl;
 

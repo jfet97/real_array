@@ -1,7 +1,7 @@
 #ifndef REALARRAY_H
 #define REALARRAY_H
 
-#include <ostream>
+#include <iostream>
 #include <iterator>
 #include <initializer_list>
 
