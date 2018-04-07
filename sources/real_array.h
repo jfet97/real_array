@@ -57,7 +57,7 @@ namespace jfet
 			}
 			
 			// return the numbers of element inserted in the array
-			size_t length() const {
+			size_t lenght() const {
 				return _size;
 			}
 			
