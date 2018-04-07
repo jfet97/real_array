@@ -8,26 +8,22 @@ int main(int argc, char **argv)
 	jfet::real_array<int> b{5};
 	
 	
-	for(int i = 1; i <= 5; i++)
-	{
+	for(int i = 1; i <= 5; i++) {
 		a[i] = i;
 	}
 	
-	for(int i = 1; i <= 5; i++)
-	{
+	for(int i = 1; i <= 5; i++) {
 		b[i] = 2*i;
 	}
 	
 	
 	try {
-	b[67];
+		b[67];
 	}
 	catch(std::out_of_range exception) {
 		std::cout << exception.what() << std::endl;
 	}
 	
-
-
 	
 	jfet::real_array<int>c = std::move(a);
 	jfet::real_array<int>d{5};
@@ -63,7 +59,24 @@ int main(int argc, char **argv)
 	// ERROR you can't use non-const reverse_iterator on const object, also for read-only operation. You have to use const_iterator
 	for(jfet::real_array<int>::const_reverse_iterator iter = e.crbegin(); iter != e.crend(); iter++) std::cout << "f: "<< *iter << std::endl;
 
+	jfet::real_array<int> array_1 = b;
+	jfet::real_array<int> array_2 = b;
+	jfet::real_array<int> array_3 {4};
 	
+	std::cout << std::endl << "------------------------------------------------------------------------------" << std::endl;
+	
+	if(array_2 == array_1) std::cout << "We are equals" << std::endl;
+	if(array_2 != array_3) std::cout << "We are different" << std::endl;
+	std::cout << array_1.front() << std::endl;
+	std::cout << array_1.back() << std::endl;
+	std::cout << array_1.at(3) << std::endl;
+	
+	try {
+		std::cout << array_1.at(54) << std::endl;
+	}
+	catch(std::out_of_range exception) {
+		std::cout << exception.what() << std::endl;
+	}
 
 	return 0;
 }

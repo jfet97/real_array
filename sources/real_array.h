@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <iterator>
+/* jfet::real_array transfers its constness to the contained objects */
 
 namespace jfet
 {
@@ -32,7 +33,7 @@ namespace jfet
 
 			// delegated constructor
 			real_array(size_t n);
-
+			
 			// copy constructor
 			real_array(const real_array&);
 			
@@ -54,12 +55,60 @@ namespace jfet
 			size_t length() const {
 				return _size;
 			}
+			
+			// return a reference to the first element
+			T& front() {
+				return ptr[0];
+			}
+			
+			const T& front() const{
+				return ptr[0];
+			}
+			
+			// return a reference to the last element
+			T& back() {
+				return ptr[_size - 1];
+			}
+			
+			const T& back() const{
+				return ptr[-size - 1];
+			}
+			
+			// return a copy of the first element's pointer
+			T* data() {
+				return ptr;
+			}
+			
+			// if real_array is const, you cannot modify contained elements
+			const T* data() const {
+				return ptr;
+			}
+			
+			// return a copy of the last element's pointer
+			T* last_data() {
+				return ptr + _size - 1;
+			}
+			
+			// if real_array is const, you cannot modify contained elements
+			const T* last_data() const {
+				return ptr + _size - 1;
+			}
+			
+			// returns a reference to the element at position n in the real_array
+			T& at(size_t n);
+			const T& at(size_t n) const;
 
 			// overload for [] operator
 			T& operator[](size_t n);
 			
 			// overload for [] operator for const object
 			const T& operator[](size_t n) const;
+			
+			// overload for == operator
+			bool operator==(const real_array<T>& other) const;
+			
+			// overload for != operator
+			bool operator!=(const real_array<T>& other) const;
 
 			// overload for << operator
 			friend std::ostream& operator<<<T>(std::ostream& _os, const real_array &a);
@@ -239,11 +288,11 @@ namespace jfet
 				return const_iterator(ptr + _size);
 			}
 			
-			reverse_iterator rbegin() { // not const because i must call crbegin() for const object
+			reverse_iterator rbegin() { // non-const because i must call crbegin() for const object
 				return reverse_iterator(ptr + _size);
 			}
 
-			reverse_iterator rend() { // not const because i must call crend() for const object
+			reverse_iterator rend() { // non-const because i must call crend() for const object
 				return reverse_iterator(ptr);
 			} 
 			
