@@ -84,28 +84,28 @@ namespace jfet
 					
 					// operators overload
 					
-					T& operator*() const {return *pointer;} // It's const because we do not modify 'pointer' value. We can modify the value pointed
-					T& operator[](difference_type _d) const {return pointer[_d];} // It's const because we do not modify 'pointer' value
+					inline T& operator*() const {return *pointer;} // It's const because we do not modify 'pointer' value. We can modify the value pointed
+					inline T& operator[](difference_type _d) const {return pointer[_d];} // It's const because we do not modify 'pointer' value
 					
-					iterator& operator+=(difference_type _d) {pointer += _d; return *this;}
-					iterator& operator-=(difference_type _d) {pointer -= _d; return *this;}
-					iterator& operator++() {++pointer; return *this;} //prefix ++
-					iterator& operator--() {--pointer; return *this;} // prefix --
-					iterator operator++(int) {iterator temporary{*this}; ++pointer; return temporary;} // postfix ++
-					iterator operator--(int) {iterator temporary{*this}; --pointer; return temporary;} // postfix--
+					inline iterator& operator+=(difference_type _d) {pointer += _d; return *this;}
+					inline iterator& operator-=(difference_type _d) {pointer -= _d; return *this;}
+					inline iterator& operator++() {++pointer; return *this;} //prefix ++
+					inline iterator& operator--() {--pointer; return *this;} // prefix --
+					inline iterator operator++(int) {iterator temporary{*this}; ++pointer; return temporary;} // postfix ++
+					inline iterator operator--(int) {iterator temporary{*this}; --pointer; return temporary;} // postfix--
 					
-					difference_type operator-(const iterator& other) const {return pointer - other.pointer;} // difference between iterators
-					iterator operator-(difference_type _d) const {return iterator{pointer-_d};} 
-					iterator operator+(difference_type _d) const {return iterator{pointer+_d};}
+					inline difference_type operator-(const iterator& other) const {return pointer - other.pointer;} // difference between iterators
+					inline iterator operator-(difference_type _d) const {return iterator{pointer-_d};} 
+					inline iterator operator+(difference_type _d) const {return iterator{pointer+_d};}
 					friend inline iterator operator+(difference_type _d, const iterator& other) {return iterator(_d+other.pointer);}
 					friend inline iterator operator-(difference_type _d, const iterator& other) {return iterator(_d-other.pointer);} // weird but...
 
-					bool operator==(const iterator& other) const {return pointer == other.pointer;}
-					bool operator!=(const iterator& other) const {return pointer != other.pointer;}
-					bool operator>(const iterator& other) const {return pointer > other.pointer;}
-					bool operator<(const iterator& other) const {return pointer < other.pointer;}
-					bool operator>=(const iterator& other) const {return pointer >= other.pointer;}
-					bool operator<=(const iterator& other) const {return pointer <= other.pointer;}
+					inline bool operator==(const iterator& other) const {return pointer == other.pointer;}
+					inline bool operator!=(const iterator& other) const {return pointer != other.pointer;}
+					inline bool operator>(const iterator& other) const {return pointer > other.pointer;}
+					inline bool operator<(const iterator& other) const {return pointer < other.pointer;}
+					inline bool operator>=(const iterator& other) const {return pointer >= other.pointer;}
+					inline bool operator<=(const iterator& other) const {return pointer <= other.pointer;}
 			};
 			
 			class const_iterator : public iterator {
@@ -118,31 +118,109 @@ namespace jfet
 					
 					// operators overload
 					
-					const T& operator*() const {return *iterator::pointer;} // It's const because we do not modify 'pointer' value. We cannot modify the value pointed, so we return const T&
-					const T& operator[](difference_type _d) const {return iterator::pointer[_d];} // return a const object 
+					inline const T& operator*() const {return *iterator::pointer;} // It's const because we do not modify 'pointer' value. We cannot modify the value pointed, so we return const T&
+					inline const T& operator[](difference_type _d) const {return iterator::pointer[_d];} // return a const object 
 					
-					const const_iterator& operator+=(difference_type _d) {iterator::pointer += _d; return *this;}
-					const const_iterator& operator-=(difference_type _d) {iterator::pointer -= _d; return *this;}
-					const const_iterator& operator++() {++iterator::pointer; return *this;} //prefix ++
-					const const_iterator& operator--() {--iterator::pointer; return *this;} // prefix --
-					const const_iterator operator++(int) {const_iterator temporary{*this}; ++iterator::pointer; return temporary;} // postfix ++
-					const const_iterator operator--(int) {const_iterator temporary{*this}; --iterator::pointer; return temporary;} // postfix--
+					inline const const_iterator& operator+=(difference_type _d) {iterator::pointer += _d; return *this;}
+					inline const const_iterator& operator-=(difference_type _d) {iterator::pointer -= _d; return *this;}
+					inline const const_iterator& operator++() {++iterator::pointer; return *this;} //prefix ++
+					inline const const_iterator& operator--() {--iterator::pointer; return *this;} // prefix --
+					inline const_iterator operator++(int) {const_iterator temporary{*this}; ++iterator::pointer; return temporary;} // postfix ++
+					inline const_iterator operator--(int) {const_iterator temporary{*this}; --iterator::pointer; return temporary;} // postfix--
 					
-					difference_type operator-(const const_iterator& other) const {return iterator::pointer - other.iterator::pointer;} // difference between iterators
-					const_iterator operator-(difference_type _d) const {return const_iterator{iterator::pointer-_d};} 
-					const_iterator operator+(difference_type _d) const {return const_iterator{iterator::pointer+_d};}
+					inline difference_type operator-(const const_iterator& other) const {return iterator::pointer - other.iterator::pointer;} // difference between iterators
+					inline const_iterator operator-(difference_type _d) const {return const_iterator{iterator::pointer-_d};} 
+					inline const_iterator operator+(difference_type _d) const {return const_iterator{iterator::pointer+_d};}
 					friend inline const_iterator operator+(difference_type _d, const const_iterator& other) {return const_iterator(_d+other.iterator::pointer);}
 					friend inline const_iterator operator-(difference_type _d, const const_iterator& other) {return const_iterator(_d-other.iterator::pointer);} // weird but...
 
-					bool operator==(const const_iterator& other) const {return iterator::pointer == other.iterator::pointer;}
-					bool operator!=(const const_iterator& other) const {return iterator::pointer != other.iterator::pointer;}
-					bool operator>(const const_iterator& other) const {return iterator::pointer > other.iterator::pointer;}
-					bool operator<(const const_iterator& other) const {return iterator::pointer < other.iterator::pointer;}
-					bool operator>=(const const_iterator& other) const {return iterator::pointer >= other.iterator::pointer;}
-					bool operator<=(const const_iterator& other) const {return iterator::pointer <= other.iterator::pointer;}
+					inline bool operator==(const const_iterator& other) const {return iterator::pointer == other.iterator::pointer;}
+					inline bool operator!=(const const_iterator& other) const {return iterator::pointer != other.iterator::pointer;}
+					inline bool operator>(const const_iterator& other) const {return iterator::pointer > other.iterator::pointer;}
+					inline bool operator<(const const_iterator& other) const {return iterator::pointer < other.iterator::pointer;}
+					inline bool operator>=(const const_iterator& other) const {return iterator::pointer >= other.iterator::pointer;}
+					inline bool operator<=(const const_iterator& other) const {return iterator::pointer <= other.iterator::pointer;}
 			};
 			
+			class reverse_iterator : public iterator {
+				
+				public:
+				
+					reverse_iterator() : iterator{nullptr} {}
+					reverse_iterator(T * _p) : iterator{_p} {}
+					// rule of zero
+					
+					// operators overload
+					
+					/* There is a distinction between the physical
+					   position that defines the element to which the iterator refers and the logical position that defines the
+					   value to which the iterator refer. 
+					   Thus, the value is moved to the previous element -> -1
+					*/
+					inline T& operator*() const {return *(iterator::pointer - 1);} 
+					inline T& operator[](difference_type _d) const {return *(iterator::pointer - _d - 1);} 
+					
+					// reverse operators' meaning
+					inline reverse_iterator& operator+=(difference_type _d) {iterator::pointer -= _d; return *this;}
+					inline reverse_iterator& operator-=(difference_type _d) {iterator::pointer += _d; return *this;}
+					inline reverse_iterator& operator++() {--iterator::pointer; return *this;} //prefix ++
+					inline reverse_iterator& operator--() {++iterator::pointer; return *this;} // prefix --
+					inline reverse_iterator operator++(int) {reverse_iterator temporary{*this}; --iterator::pointer; return temporary;} // postfix ++
+					inline reverse_iterator operator--(int) {reverse_iterator temporary{*this}; ++iterator::pointer; return temporary;} // postfix--
+					
+					inline difference_type operator-(const reverse_iterator& other) const {return other.iterator::pointer - iterator::pointer;} // difference between iterators
+					inline reverse_iterator operator-(difference_type _d) const {return reverse_iterator{iterator::pointer+_d};} 
+					inline reverse_iterator operator+(difference_type _d) const {return reverse_iterator{iterator::pointer-_d};}
+					friend inline reverse_iterator operator+(difference_type _d, const reverse_iterator& other) {return reverse_iterator(_d-other.iterator::pointer);}
+					friend inline reverse_iterator operator-(difference_type _d, const reverse_iterator& other) {return reverse_iterator(_d+other.iterator::pointer);} // weird but...
+
+					inline bool operator==(const reverse_iterator& other) const {return iterator::pointer == other.iterator::pointer;}
+					inline bool operator!=(const reverse_iterator& other) const {return iterator::pointer != other.iterator::pointer;}
+					inline bool operator>(const reverse_iterator& other) const {return iterator::pointer < other.iterator::pointer;}
+					inline bool operator<(const reverse_iterator& other) const {return iterator::pointer > other.iterator::pointer;}
+					inline bool operator>=(const reverse_iterator& other) const {return iterator::pointer <= other.iterator::pointer;}
+					inline bool operator<=(const reverse_iterator& other) const {return iterator::pointer >= other.iterator::pointer;}
+			};
 			
+			class const_reverse_iterator : public reverse_iterator {
+				
+				public:
+				
+					const_reverse_iterator() : reverse_iterator{nullptr} {}
+					const_reverse_iterator(T * _p) : reverse_iterator{_p} {}
+					// rule of zero
+					
+					// operators overload
+					
+					/* There is a distinction between the physical
+					   position that defines the element to which the iterator refers and the logical position that defines the
+					   value to which the iterator refer. 
+					   Thus, the value is moved to the previous element -> -1
+					*/
+					const T& operator*() const {return *(iterator::pointer - 1);} 
+					const T& operator[](difference_type _d) const {return *(iterator::pointer - _d - 1);} 
+					
+					// reverse operators' meaning
+					inline const const_reverse_iterator& operator+=(difference_type _d) {iterator::pointer -= _d; return *this;}
+					inline const const_reverse_iterator& operator-=(difference_type _d) {iterator::pointer += _d; return *this;}
+					inline const const_reverse_iterator& operator++() {--iterator::pointer; return *this;} //prefix ++
+					inline const const_reverse_iterator& operator--() {++iterator::pointer; return *this;} // prefix --
+					inline const_reverse_iterator operator++(int) {const_reverse_iterator temporary{*this}; --iterator::pointer; return temporary;} // postfix ++
+					inline const_reverse_iterator operator--(int) {const_reverse_iterator temporary{*this}; ++iterator::pointer; return temporary;} // postfix--
+					
+					inline difference_type operator-(const const_reverse_iterator& other) const {return other.iterator::pointer - iterator::pointer;} // difference between iterators
+					inline const_reverse_iterator operator-(difference_type _d) const {return const_reverse_iterator{iterator::pointer+_d};} 
+					inline const_reverse_iterator operator+(difference_type _d) const {return const_reverse_iterator{iterator::pointer-_d};}
+					friend inline const_reverse_iterator operator+(difference_type _d, const const_reverse_iterator& other) {return const_reverse_iterator(_d-other.iterator::pointer);}
+					friend inline const_reverse_iterator operator-(difference_type _d, const const_reverse_iterator& other) {return const_reverse_iterator(_d+other.iterator::pointer);} // weird but...
+
+					inline bool operator==(const const_reverse_iterator& other) const {return iterator::pointer == other.iterator::pointer;}
+					inline bool operator!=(const const_reverse_iterator& other) const {return iterator::pointer != other.iterator::pointer;}
+					inline bool operator>(const const_reverse_iterator& other) const {return iterator::pointer < other.iterator::pointer;}
+					inline bool operator<(const const_reverse_iterator& other) const {return iterator::pointer > other.iterator::pointer;}
+					inline bool operator>=(const const_reverse_iterator& other) const {return iterator::pointer <= other.iterator::pointer;}
+					inline bool operator<=(const const_reverse_iterator& other) const {return iterator::pointer >= other.iterator::pointer;}
+			};
 			
 			
 			iterator begin() { // not const because i must call cbegin() for const object
@@ -160,6 +238,22 @@ namespace jfet
 			const_iterator cend() const {
 				return const_iterator(ptr + _size);
 			}
+			
+			reverse_iterator rbegin() { // not const because i must call crbegin() for const object
+				return reverse_iterator(ptr + _size);
+			}
+
+			reverse_iterator rend() { // not const because i must call crend() for const object
+				return reverse_iterator(ptr);
+			} 
+			
+			const_reverse_iterator crbegin() const { 
+				return const_reverse_iterator(ptr + _size);
+			}
+
+			const_reverse_iterator crend() const { 
+				return const_reverse_iterator(ptr);
+			} 
 	};
 }
 

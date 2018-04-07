@@ -24,7 +24,7 @@ namespace jfet
 	template<typename T>
 	// using T[other._size] I'm sure avoiding garbage values if I change variables' declaration order
 	real_array<T>::real_array(const real_array<T> &other) : _size{other._size}, ptr{new T[other._size]} {
-		for(int index = 0; index < _size; index++) ptr[index] = other.ptr[index];
+		for(size_t index = 0; index < _size; index++) ptr[index] = other.ptr[index];
 	}
 
 			
@@ -33,7 +33,7 @@ namespace jfet
 	real_array<T>& real_array<T>::operator= (const real_array<T> &other) {
 		_size = other._size;
 		// object already esixts, so I don't need to allocate new memory
-		for(int index = 0; index < _size; index++) ptr[index] = other.ptr[index];
+		for(size_t index = 0; index < _size; index++) ptr[index] = other.ptr[index];
 		return *this;
 	}
 	
