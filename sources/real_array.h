@@ -115,6 +115,18 @@ namespace jfet
 			// overload for != operator
 			bool operator!=(const real_array<T>& other) const;
 
+			// overload for > operator
+			bool operator>(const real_array<T>& other) const;
+			
+			// overload for < operator
+			bool operator<(const real_array<T>& other) const;
+			
+			// overload for == operator
+			bool operator>=(const real_array<T>& other) const;
+			
+			// overload for != operator
+			bool operator<=(const real_array<T>& other) const;
+
 			// overload for << operator
 			friend std::ostream& operator<<<T>(std::ostream& _os, const real_array &a);
 			
@@ -309,6 +321,13 @@ namespace jfet
 				return const_reverse_iterator(ptr);
 			} 
 	};
+	
+	
+	typedef real_array<char> char_array;
+	typedef real_array<std::string> string_array;
+	typedef real_array<int> int_array;
+	typedef real_array<float> float_array;
+	typedef real_array<double> double_array;
 }
 
 #include "real_array.tpp"

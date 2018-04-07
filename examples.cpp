@@ -1,6 +1,5 @@
 #include "real_array.h"
 #include <iostream>
-
 int main(int argc, char **argv)
 {
 	jfet::real_array<int> a(5);
@@ -79,7 +78,16 @@ int main(int argc, char **argv)
 	
 	jfet::real_array<float> realFloatArray {1.5, 6.8, 33.2, 9.53};
 	std::cout << "realFloatArray has size: " << realFloatArray.size() << std::endl;
-	for(auto x : realFloatArray) std:: cout << x << std::endl;
-
+	for(auto x : realFloatArray) std::cout << x << std::endl;
+	
+	
+	jfet::real_array<std::string> p {"aaa","aab","aab"};
+	jfet::real_array<std::string> p2 {"aaa","aab","aac"};
+	if(p >= p2) std::cout << "ciao" << std::endl; 
+	
+	
+	jfet::int_array ar {1,2,3,4,5,6,7,8,9,0};
+	for(auto x : ar) std::cout << x << std::endl;
+	
 	return 0;
 }

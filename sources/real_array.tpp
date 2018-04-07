@@ -133,6 +133,38 @@ namespace jfet
 	bool real_array<T>::operator!=(const real_array<T>& other) const {
 		return !(*this==other); // calling == operator
 	}
+	
+	// overload for > operator
+	template<typename T>
+	bool real_array<T>::operator>(const real_array<T>& other) const {
+		if(_size > other._size) return true; 
+		if(_size == other._size) { // if sizes are equals, check elements, starting by index 0 (MOST SIGNIFICANT VALUE)
+			for(size_t i = 0; i < _size; i++) { 
+				if(ptr[i] < other.ptr[i]) return false; // if the value checked is smaller we return false
+				if(ptr[i] > other.ptr[i]) return true; // if the value checked is greater we return true
+				// if them are the same, for cycle continue...if it ends we return false because values are the same
+			}
+		}
+		return false; // if _size < other._size or if them are exa
+	}
+	
+	// overload for < operator
+	template<typename T>
+	bool real_array<T>::operator<(const real_array<T>& other) const {
+		return !((*this > other)||(*this == other));
+	}
+	
+	//= overload for >= operator
+	template<typename T>
+	bool real_array<T>::operator>=(const real_array<T>& other) const {
+		return !(*this < other);
+	}
+	
+	//= overload for >= operator
+	template<typename T>
+	bool real_array<T>::operator<=(const real_array<T>& other) const {
+		return !(*this > other);
+	}
 
 	// overload for << operator
 	template<typename T>
