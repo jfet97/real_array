@@ -1,7 +1,5 @@
 # real_array
-This template class is being created to access to the n-th element of an array using [n] instead of [n-1].
-
-    
+   
     
 What is this? This is a new, never seen, useless container.
 real_array is like a normal array, but with one difference:
@@ -20,6 +18,6 @@ P.S. you can use: jfet::char_array instead of jfet::real_array<char>;
     	          jfet::string_array instead of jfet::real_array<std::string>;
 	              jfet::int_array instead of jfet::real_array<int> 
 	              jfet::float_array instead of jfet::real_array<float> 
-	              jfet::double_array instead of jfet::real_array<double
+	              jfet::double_array instead of jfet::real_array<double>
 					  
 #code4fun
