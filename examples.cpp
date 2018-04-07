@@ -4,8 +4,8 @@
 
 int main(int argc, char **argv)
 {
-	jfet::real_array<int> a{5};
-	jfet::real_array<int> b{5};
+	jfet::real_array<int> a(5);
+	jfet::real_array<int> b(5);
 	
 	
 	for(int i = 1; i <= 5; i++) {
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	
 	
 	jfet::real_array<int>c = std::move(a);
-	jfet::real_array<int>d{5};
+	jfet::real_array<int>d(5);
 	d = b;
 	
 	std::cout << std::endl << "------------------------------------------------------------------------------" << std::endl;
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
 	jfet::real_array<int> array_1 = b;
 	jfet::real_array<int> array_2 = b;
-	jfet::real_array<int> array_3 {4};
+	jfet::real_array<int> array_3 (4);
 	
 	std::cout << std::endl << "------------------------------------------------------------------------------" << std::endl;
 	
@@ -77,6 +77,10 @@ int main(int argc, char **argv)
 	catch(std::out_of_range exception) {
 		std::cout << exception.what() << std::endl;
 	}
+	
+	jfet::real_array<float> realFloatArray {1.5,6.8,33.2,9.53};
+	std::cout << "realFloatArray has size: " << realFloatArray.size() << std::endl;
+	for(auto x : realFloatArray) std:: cout << x << std::endl;
 
 	return 0;
 }

@@ -20,6 +20,20 @@ namespace jfet
 		}
 	}
 	
+	// initializer_list constructor
+	template<typename T>
+	real_array<T>::real_array(std::initializer_list<T> args) {
+		// _size of our real_array is equal to the initializer_list's size
+		_size = args.size();
+		
+		// allocate enough memory, we call type T void constructor...
+		ptr = new T[_size];
+		
+		//... so we move elements from the initializer_list to our array; we avoid copy
+		for(size_t i = 0; i < _size; i++) ptr[i] = std::move(args.begin()[i]);
+		
+	}
+	
 	// copy constructor
 	template<typename T>
 	// using T[other._size] I'm sure avoiding garbage values if I change variables' declaration order

@@ -3,6 +3,8 @@
 
 #include <ostream>
 #include <iterator>
+#include <initializer_list>
+
 /* jfet::real_array transfers its constness to the contained objects */
 
 namespace jfet
@@ -33,6 +35,9 @@ namespace jfet
 
 			// delegated constructor
 			real_array(size_t n);
+			
+			// initializer_list constructor
+			real_array(std::initializer_list<T> args);
 			
 			// copy constructor
 			real_array(const real_array&);
