@@ -14,10 +14,10 @@ Run examples.cpp to see some examples.
     
 Note that jfet::real_array transfers its constness to the contained objects
     
-P.S. you can use: jfet::char_array instead of jfet::real_array<char>;
-    	          jfet::string_array instead of jfet::real_array<std::string>;
-	              jfet::int_array instead of jfet::real_array<int> 
-	              jfet::float_array instead of jfet::real_array<float> 
-	              jfet::double_array instead of jfet::real_array<double>
+P.S. you can use:     jfet::char_array instead of jfet::real_array<char>;\n
+    	              jfet::string_array instead of jfet::real_array<std::string>;\n
+	              jfet::int_array instead of jfet::real_array<int>\n
+	              jfet::float_array instead of jfet::real_array<float>\n
+	              jfet::double_array instead of jfet::real_array<double>\n
 					  
 #code4fun
