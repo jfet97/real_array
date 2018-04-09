@@ -76,7 +76,7 @@ namespace jfet
 			}
 			
 			const T& back() const{
-				return ptr[-size - 1];
+				return ptr[_size - 1];
 			}
 			
 			// return a copy of the first element's pointer
