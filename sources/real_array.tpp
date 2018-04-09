@@ -76,8 +76,7 @@ namespace jfet
 	// at returns a reference to the element at position n in the real_array 
 	template<typename T>
 	T& real_array<T>::at(size_t _n) {
-		// if 0 is inserted, you got first element as usual ;)
-		if(_n==0) return ptr[0];
+		if(_n==0) throw std::out_of_range("0 is no more a valid index");
 		// else you got the "real" object requested
 		if(_n<=_size) return ptr[_n-1];
 		// throw exception if n>size_t
@@ -87,35 +86,20 @@ namespace jfet
 	// at returns a const reference to the element at position n in the real_array 
 	template<typename T>
 	const T& real_array<T>::at(size_t _n) const{
-		// if 0 is inserted, you got first element as usual ;)
-		if(_n==0) return ptr[0];
-		// else you got the "real" object requested
-		if(_n<=_size) return ptr[_n-1];
-		// throw exception if n>size_t
-		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
+		return const_cast<T&>(static_cast<const real_array<T>*>(this)->at(_n));
 	}
 	
 			
 	// overload for [] operator
 	template<typename T>
 	T& real_array<T>::operator[](size_t _n) {
-		// if 0 is inserted, you got first element as usual ;)
-		if(_n==0) return ptr[0];
-		// else you got the "real" object requested
-		if(_n<=_size) return ptr[_n-1];
-		// throw exception if n>size_t
-		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
+		return this->at(_n);
 	}
 			
 	// overload for [] operator for const objects
 	template<typename T>
 	const T& real_array<T>::operator[](size_t _n) const {
-		// if 0 is inserted, you got first element as usual ;)
-		if(_n==0) return ptr[0];
-		// else you got the "real" object requested
-		if(_n<=_size) return ptr[_n-1];
-		// throw exception if n>size_t
-		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
+		return const_cast<T&>(static_cast<const real_array<T>*>(this)->at(_n));
 	}
 	
 	// overload for == operator
