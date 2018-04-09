@@ -43,7 +43,8 @@ namespace jfet
 	// copy assignment operator
 	template<typename T>
 	real_array<T>& real_array<T>::operator= (const real_array<T> &other) {
-		_size = other._size;
+		// if sizes are different is dangerous perform any operation
+		if(_size != other._size) throw std::length_error("sizes are different");
 		// object already esixts, so I don't need to allocate new memory
 		for(size_t index = 0; index < _size; index++) ptr[index] = other.ptr[index];
 		return *this;
