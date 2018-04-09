@@ -153,8 +153,8 @@ namespace jfet
 	// overload for << operator
 	template<typename T>
 	std::ostream& operator<<(std::ostream& _os, const real_array<T> &other) {
-		for(size_t index = 1; index <=other._size; index++) std::cout << other[index] << " ";
-		std::cout << std::endl;
+		for(size_t index = 1; index <=other._size; index++) _os << other[index] << " ";
+		_os << std::endl;
 		return _os;
 	}
 			
