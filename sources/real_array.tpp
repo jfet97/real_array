@@ -28,6 +28,7 @@ namespace jfet
 		ptr = new T[_size];
 		
 		//... so we move elements from the initializer_list to our array; we avoid copy
+		// there does not appear to be any way of using move-semantic in initializer list elements in the current revision of the language, because it provides only const reference to its arguments
 		for(size_t i = 0; i < _size; i++) ptr[i] = std::move(args.begin()[i]);
 		
 	}
