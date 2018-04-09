@@ -76,6 +76,13 @@ namespace jfet
 	// at returns a reference to the element at position n in the real_array 
 	template<typename T>
 	T& real_array<T>::at(size_t _n) {
+		return const_cast<T&>(std::as_const(*this).at(_n)); 
+		// as_const will force the compiler to see *this as a const object, so at(_n) const will be called, const_cast remove the constness from the reference returned
+	}
+	
+	// at returns a const reference to the element at position n in the real_array 
+	template<typename T>
+	const T& real_array<T>::at(size_t _n) const{
 		if(_n==0) throw std::out_of_range("0 is no more a valid index");
 		// else you got the "real" object requested
 		if(_n<=_size) return ptr[_n-1];
@@ -83,23 +90,17 @@ namespace jfet
 		else throw std::out_of_range(std::to_string(_n) + " is greater than " + std::to_string(_size));
 	}
 	
-	// at returns a const reference to the element at position n in the real_array 
-	template<typename T>
-	const T& real_array<T>::at(size_t _n) const{
-		return const_cast<T&>(static_cast<const real_array<T>*>(this)->at(_n));
-	}
-	
 			
 	// overload for [] operator
 	template<typename T>
 	T& real_array<T>::operator[](size_t _n) {
-		return this->at(_n);
+		return this->at(_n); // call non-const version
 	}
 			
 	// overload for [] operator for const objects
 	template<typename T>
 	const T& real_array<T>::operator[](size_t _n) const {
-		return const_cast<T&>(static_cast<const real_array<T>*>(this)->at(_n));
+		return this->at(_n); // call const version
 	}
 	
 	// overload for == operator
