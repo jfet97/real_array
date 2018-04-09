@@ -1,6 +1,5 @@
 #include "real_array.h"
 
-
 namespace jfet
 {
 	// void constructor
@@ -76,8 +75,10 @@ namespace jfet
 	// at returns a reference to the element at position n in the real_array 
 	template<typename T>
 	T& real_array<T>::at(size_t _n) {
-		return const_cast<T&>(std::as_const(*this).at(_n)); 
-		// as_const will force the compiler to see *this as a const object, so at(_n) const will be called, const_cast remove the constness from the reference returned
+		// return const_cast<T&>(std::as_const(*this).at(_n)); 
+		// as_const will force the compiler to see *this as a const object, so at(_n) const will be called, const_cast remove the constness from the reference returned | C++17
+		return const_cast<T&>(static_cast<const real_array<T>*>(this)->at(_n));
+		// static_cast will force the compiler to see this as a pointer to const object, so at(_n) const will be called, const_cast remove the constness from the reference returned
 	}
 	
 	// at returns a const reference to the element at position n in the real_array 
@@ -94,13 +95,13 @@ namespace jfet
 	// overload for [] operator
 	template<typename T>
 	T& real_array<T>::operator[](size_t _n) {
-		return this->at(_n); // call non-const version
+		return this->at(_n); // call non-const version, because this is a pointer to non-const
 	}
 			
 	// overload for [] operator for const objects
 	template<typename T>
 	const T& real_array<T>::operator[](size_t _n) const {
-		return this->at(_n); // call const version
+		return this->at(_n); // call const version, because this is a pointer to const
 	}
 	
 	// overload for == operator
